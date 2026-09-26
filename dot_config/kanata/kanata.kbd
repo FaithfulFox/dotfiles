@@ -114,30 +114,25 @@
   trsft (one-shot 2000 rsft)
 )
 
-(defvirtualkeys
-  vk_sft lsft
-  vk_cw (caps-word 2000)
-)
-
-(defalias
-  v-sft (multi (on-press press-vkey vk_sft) (on-release release-vkey vk_sft))
-  v-cw (multi (on-press press-vkey vk_cw) (on-release release-vkey vk_cw))
-  sft_caps (one-shot 2000 lsft)
-)
-
 (deftemplate modcho (keys timeout action)
   $keys $action $timeout all-released (navigation symbols numbers function numpad mouse source)
 )
 
 (defchordsv2
   (t! modcho (a s            ) 30 (one-shot 2000 lctl))
-  (t! modcho (  s d          ) 30 @sft_caps)
+  (t! modcho (  s d          ) 30 (one-shot 2000 lsft))
   (t! modcho (    d f        ) 30 (one-shot 2000 lalt))
   (t! modcho (  s   f        ) 20 (one-shot 2000 lmet))
   (t! modcho (        k   ;  ) 20 (one-shot 2000 lmet))
   (t! modcho (        k l    ) 30 (one-shot 2000 lalt))
-  (t! modcho (          l ;  ) 30 @sft_caps)
+  (t! modcho (          l ;  ) 30 (one-shot 2000 lsft))
   (t! modcho (            ; ') 30 (one-shot 2000 lctl))
+  (t! modcho (a     f        ) 30 (caps-word 2000))
+  (t! modcho (        k     ') 30 (caps-word 2000))
+  (t! modcho (  s d f        ) 30 (multi (one-shot 2000 lctl) (one-shot 2000 lmet) (one-shot 2000 lalt)))
+  (t! modcho (        k l ;  ) 30 (multi (one-shot 2000 lctl) (one-shot 2000 lmet) (one-shot 2000 lalt)))
+  (t! modcho (a s d          ) 30 (multi (one-shot 2000 lctl) (one-shot 2000 lmet) (one-shot 2000 lsft)))
+  (t! modcho (          l ; ') 30 (multi (one-shot 2000 lctl) (one-shot 2000 lmet) (one-shot 2000 lsft)))
 
   (t! modcho (1 2    ) 30 @{)
   (t! modcho (  2 3  ) 20 [)
