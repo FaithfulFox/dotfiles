@@ -33,9 +33,18 @@ bars:
       bottom: 0
       right: 0
     widgets:
-      left: ["komorebi_workspaces", "komorebi_active_layout"]
+      left: ["komorebi_workspaces", "komorebi_active_layout", "launchpad"]
       center: ["active_window"]
-      right: ["media", "systray", "wallpapers", "weather", "pomodoro", "clock"]
+      right:
+        [
+          "media",
+          "systray",
+          "wallpapers",
+          "pomodoro",
+          "weather",
+          "clock",
+          "control_center",
+        ]
 widgets:
   bluetooth:
     type: "yasb.bluetooth.BluetoothWidget"
@@ -66,11 +75,11 @@ widgets:
     options:
       label: "<span>\udb80\udf5c</span>"
       menu_list:
-        - {title: "Home", path: "~"}
-        - {title: "Downloads", path: "E:\\Downloads"}
-        - {title: "Documents", path: "~\\Documents"}
-        - {title: "Pictures", path: "~\\Pictures"}
-        - {title: "Videos", path: "~\\Videos"}
+        - { title: "Home", path: "~" }
+        - { title: "Downloads", path: "E:\\Downloads" }
+        - { title: "Documents", path: "~\\Documents" }
+        - { title: "Pictures", path: "~\\Pictures" }
+        - { title: "Videos", path: "~\\Videos" }
       system_menu: true
       power_menu: false
       blur: true
@@ -201,7 +210,7 @@ widgets:
         <span>{icon}</span> {location}: Min {min_temp}, Max {max_temp},
         Humidity {humidity}
       api_key: "env"
-      update_interval: 600  # Update interval in seconds, Min 600
+      update_interval: 600 # Update interval in seconds, Min 600
       units: "metric"
       hide_decimal: true
       location: "env"
@@ -272,11 +281,11 @@ widgets:
       label: "<span>{icon}</span> {level}"
       label_alt: "{volume}"
       volume_icons:
-        - "\ueee8"  # Icon for muted
-        - "\uf026"  # Icon for 0-10% volume
-        - "\uf027"  # Icon for 11-30% volume
-        - "\uf027"  # Icon for 31-60% volume
-        - "\uf028"  # Icon for 61-100% volume
+        - "\ueee8" # Icon for muted
+        - "\uf026" # Icon for 0-10% volume
+        - "\uf027" # Icon for 11-30% volume
+        - "\uf027" # Icon for 31-60% volume
+        - "\uf028" # Icon for 61-100% volume
       callbacks:
         on_right: "exec cmd.exe /c start ms-settings:sound"
   clock:
@@ -306,7 +315,7 @@ widgets:
       callbacks:
         on_left: "toggle_group"
         on_middle: "toggle_label"
-        on_right: "exec explorer C:\\"  # Open disk C in file explorer
+        on_right: "exec explorer C:\\" # Open disk C in file explorer
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
@@ -314,8 +323,8 @@ widgets:
       uptime: true
       blur: talse
       blur_background: true
-      animation_duration: 250  # Milisecond
-      button_row: 5  # Number of buttons in row, min 1 max 5
+      animation_duration: 250 # Milisecond
+      button_row: 5 # Number of buttons in row, min 1 max 5
       buttons:
         signout: ["\udb80\udf43", "Sign out"]
         shutdown: ["\uf011", "Shut Down"]
@@ -343,17 +352,17 @@ widgets:
     type: "yasb.github.GithubWidget"
     options:
       label: "<span>\ueba1</span>"
-      label_alt: "Notifications {data}"  # {data} return number of unread notification
-      token: env  # GitHub Personal access tokens (classic) https://github.com/settings/tokens
-      max_notification: 20  # Max number of notification displaying in menu max: 50
-      only_unread: false  # Show only unread or all notifications;
-      max_field_size: 54  # Max characters in title before truncation.
-      update_interval: 300  # Check for new notification in seconds
+      label_alt: "Notifications {data}" # {data} return number of unread notification
+      token: env # GitHub Personal access tokens (classic) https://github.com/settings/tokens
+      max_notification: 20 # Max number of notification displaying in menu max: 50
+      only_unread: false # Show only unread or all notifications;
+      max_field_size: 54 # Max characters in title before truncation.
+      update_interval: 300 # Check for new notification in seconds
       menu:
-        blur: true  # Enable blur effect for the menu
-        round_corners: true  # Enable round corners for the menu (this option is not supported on Windows 10)
-        round_corners_type: "normal"  # Set the type of round corners for the menu (normal, small) (this option is not supported on Windows 10)
-        border_color: "System"  # Set the border color for the menu (this option is not supported on Windows 10)
+        blur: true # Enable blur effect for the menu
+        round_corners: true # Enable round corners for the menu (this option is not supported on Windows 10)
+        round_corners_type: "normal" # Set the type of round corners for the menu (normal, small) (this option is not supported on Windows 10)
+        border_color: "System" # Set the border color for the menu (this option is not supported on Windows 10)
         alignment: "right"
         direction: "down"
         distance: 6
@@ -363,9 +372,9 @@ widgets:
       class_name: "systray"
       label_collapsed: " \uf0d7 "
       label_expanded: " \uf0da "
-      label_position: "right"  # Can be "left" or "right"
-      icon_size: 18  # Can be any integer between 8 and 64
-      pin_click_modifier: "alt"  # Can be "ctrl", "alt" or "shift"
+      label_position: "right" # Can be "left" or "right"
+      icon_size: 18 # Can be any integer between 8 and 64
+      pin_click_modifier: "alt" # Can be "ctrl", "alt" or "shift"
       show_unpinned: false
       show_unpinned_button: true
       show_battery: false
@@ -384,18 +393,18 @@ widgets:
       # image_path: "C:\\Users\\{Username}\\Images"
       image_path:
         - "E:\\pictures\\Wallpapers\\standard"
-      change_automatically: false  # Automatically change wallpaper
-      update_interval: 60  # If change_automatically is true, update interval in seconds
+      change_automatically: false # Automatically change wallpaper
+      update_interval: 60 # If change_automatically is true, update interval in seconds
       gallery:
         enabled: true
         blur: true
         image_width: 440
         image_per_page: 6
-        gallery_columns: 3  # 0 = auto, matches image_per_page for a single row
-        horizontal_position: "center"  # left/center/right placement on screen
-        vertical_position: "center"  # top/center/bottom placement
-        position_offset: 0  # minimum gap (px) from screen edges - see below for advanced options
-        respect_work_area: true  # clamp to OS work area (avoids Windows taskbar)
+        gallery_columns: 3 # 0 = auto, matches image_per_page for a single row
+        horizontal_position: "center" # left/center/right placement on screen
+        vertical_position: "center" # top/center/bottom placement
+        position_offset: 0 # minimum gap (px) from screen edges - see below for advanced options
+        respect_work_area: true # clamp to OS work area (avoids Windows taskbar)
         show_buttons: false
         orientation: "landscape"
         image_spacing: 8
@@ -475,4 +484,106 @@ widgets:
         enabled: false
         color: "black"
         radius: 3
-        offset: [ 1, 1 ]
+        offset: [1, 1]
+  launchpad:
+    type: "yasb.launchpad.LaunchpadWidget"
+    options:
+      label: "<span>\udb85\udcde</span>"
+      search_placeholder: "Search apps..."
+      app_icon_size: 48
+      window:
+        fullscreen: false
+        width: 1024
+        height: 768
+        overlay_block: true
+      window_style:
+        enable_blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "system"
+      window_animation:
+        fade_in_duration: 120
+        fade_out_duration: 100
+      group_apps: false
+      callbacks:
+        on_left: "toggle_launchpad"
+  control_center:
+    type: "yasb.control_center.ControlCenterWidget"
+    options:
+      label: "<span>\ue713</span>"
+      tooltip: true
+      sections_order:
+        - "system_controls"
+        - "quick_actions"
+        - "sliders"
+        - "power"
+        - "media"
+      popup:
+        alignment: "center"
+        direction: "down"
+        border_color: System
+        round_corners: true
+        round_corners_type: normal
+        offset_top: 8
+      sections:
+        system_controls:
+          profile_image_size: 28
+          power_icon: "\uE7E8"
+          lock_icon: "\uE72E"
+          settings_icon: "\uE713"
+        quick_actions:
+          show: true
+          columns: 3
+          label_position: "default"
+          actions:
+            - id: "toggle_dnd"
+              label: "Do Not Disturb"
+              icon: "\uf285"
+            - id: "toggle_mute"
+              label: "Mute"
+              icon: "\ue74f"
+            - id: "toggle_mic_mute"
+              label: "Mic Mute"
+              icon: "\uF12E"
+            - id: "screenshot"
+              label: "Screenshot"
+              icon: "\ue91b"
+            - id: "touch_keyboard"
+              label: "Keyboard"
+              icon: "\uE765"
+            - id: "toggle_theme"
+              label: "Dark Mode"
+              icon: "\uE708"
+        sliders:
+          show: true
+          brightness:
+            show_slider: true
+            icon: "\uE706"
+            show_source_selector: true
+            source_selector_icon: "\uE972"
+          volume:
+            show_slider: true
+            icon: "\uE767"
+            show_source_selector: true
+            source_selector_icon: "\uE972"
+          microphone:
+            show_slider: true
+            icon: "\uE720"
+            show_source_selector: true
+            source_selector_icon: "\uE972"
+        media:
+          show: true
+          thumbnail_size: 36
+          thumbnail_radius: 4
+          icons:
+            prev_track: "\ue622"
+            next_track: "\ue623"
+            play: "\uf5b0"
+            pause: "\ue62e"
+        power:
+          show: false
+          power_plan_title: "Power Plan"
+          power_mode_title: "Power Mode"
+          button_menu_icon: "\ue76c"
+      callbacks:
+        on_left: "toggle_menu"
