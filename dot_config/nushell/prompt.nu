@@ -60,7 +60,7 @@ export def git_component [] {
     if ($stat.repo_name != "no_repository") {
       [
       (char space)
-      (ansi grey)
+      (ansi blue)
       ""
       ($stat.branch)
       (
